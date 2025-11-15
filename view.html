@@ -1,5 +1,3 @@
-se n for:
-
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -255,6 +253,18 @@ se n for:
                 height: 170px;
             }
         }
+        .footer-text {
+            padding: 8px 10px;
+            border-radius: 10px;
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            color: #b5b5b5;
+        }
+        .footer-text a {
+            color: #b5b5b5;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -308,7 +318,7 @@ se n for:
                     <button class="tab" data-tab="playlist">Playlist</button>
                     <button class="tab" data-tab="sagas">Saga</button>
                     <button class="tab" data-tab="glossary">Glossário</button>
-                    <button class="tab" data-tab="chat">Chat</button>
+                    <button class="footer-text"><a href="chat.html">Chat</a></button>
                 </div>
 
                 <div class="panes">
@@ -332,13 +342,6 @@ se n for:
                     <div data-pane="glossary" class="pane" style="display:none">
                         <div class="muted small">Duplo clique em uma palavra da descrição para ver explicação.</div>
                         <div id="glossaryResult" class="card" style="margin-top:8px">Nenhuma seleção</div>
-                    </div>
-
-                    <div data-pane="chat" class="pane" style="display:none">
-                        <div class="chat-box" id="chatBox"><div class="muted">Chat vazio — comece a conversar!</div></div>
-                        <input id="chatUser" placeholder="Seu nome (opcional)" />
-                        <input id="chatText" placeholder="Mensagem..." />
-                        <button class="btn" id="sendChat">Enviar</button>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+
+        body {
+            background: #0d0f14;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: #151820;
+            width: 380px;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.35);
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+            width: 100%;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            background: #1f232d;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+
+        .btn-login:hover {
+            background: #5a4bd6;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 0.85rem;
+            color: #b5b5b5;
+        }
+
+        .footer-text a {
+            color: #6c5ce7;
+            text-decoration: none;
+        }
+
+        .rule-ok {
+            color: #4cd137; /* verde */
+        }
+
+        .rule-bad {
+            color: #e84118; /* vermelho */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h1 class="title">Leitura+</h1>
+
+        <div class="input-group">
+            <label for="username">Nome de usuario</label>
+            <input type="username" id="username" placeholder="Seu nome de usuario">
+        </div>
+
+        <div class="input-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="seuemail@example.com">
+        </div>
+
+        <div class="input-group">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" placeholder="********">
+        </div>
+
+        <div id="password-rules" style="margin-top: 10px; font-size: 0.85rem; color: #ccc; display: none;">
+            <p id="rule-length">✖ Mínimo de 6 caracteres</p>
+            <p id="rule-lower">✖ Pelo menos uma letra minúscula</p>
+            <p id="rule-upper">✖ Pelo menos uma letra maiúscula</p>
+            <p id="rule-number">✖ Pelo menos um número</p>
+        </div>
+
+
+        <div class="input-group">
+            <label for="confsenha">Confirmar senha</label>
+            <input type="password" id="confsenha" placeholder="********">
+        </div>
+
+        <button class="btn-login" onclick="register()">Cadastrar</button>
+
+        <p class="footer-text">
+            Já possui conta? <a href="login.html">Login</a>
+        </p>
+    </div>
+
+    <script>
+        
+        function validateEmail() {
+            const email = document.getElementById("email").value;
+            
+            return email.includes("@") && email.includes(".");
+        }
+
+        document.getElementById("senha").addEventListener("input", validateWordVisual);
+
+        function validateWordVisual() {
+            const senha = document.getElementById("senha").value;
+            const rules = document.getElementById("password-rules");
+
+            const hasMinLength = senha.length >= 6;
+            const hasLower = /[a-z]/.test(senha);
+            const hasUpper = /[A-Z]/.test(senha);
+            const hasNumber = /[0-9]/.test(senha);
+
+            // Se o campo estiver vazio → esconder regras
+            if (senha.length === 0) {
+                rules.style.display = "none";
+                return;
+            }
+
+            // Se *todas* as regras estiverem ok → esconder novamente
+            if (hasMinLength && hasLower && hasUpper && hasNumber) {
+                rules.style.display = "none";
+            } else {
+                rules.style.display = "block";
+            }
+
+            // Atualizar cores dos itens
+            updateRule("rule-length", hasMinLength);
+            updateRule("rule-lower", hasLower);
+            updateRule("rule-upper", hasUpper);
+            updateRule("rule-number", hasNumber);
+        }
+
+        function updateRule(id, isValid) {
+            const rule = document.getElementById(id);
+
+            if (isValid) {
+                rule.classList.remove("rule-bad");
+                rule.classList.add("rule-ok");
+                rule.textContent = "✔ " + rule.textContent.substring(2);
+            } else {
+                rule.classList.remove("rule-ok");
+                rule.classList.add("rule-bad");
+                rule.textContent = "✖ " + rule.textContent.substring(2);
+            }
+        }
+
+        function validadeWord() {
+            const senha = document.getElementById("senha").value;
+
+            const hasMinLength = senha.length >= 6;
+            const hasLower = /[a-z]/.test(senha);
+            const hasUpper = /[A-Z]/.test(senha);
+            const hasNumber = /[0-9]/.test(senha);
+
+            return hasMinLength && hasLower && hasUpper && hasNumber;
+        }
+
+        function validatePassword() {
+            const senha = document.getElementById("senha").value;
+            const confsenha = document.getElementById("confsenha").value;
+
+            return senha === confsenha;
+        }
+
+        function register() {
+            if (!validateEmail()) {
+                alert("Por favor, insira um e-mail válido.");
+                return;
+            }
+
+            if (!validadeWord()) {
+                alert("Senha fraca!");
+                return;
+            }
+
+            if (!validatePassword()) {
+                alert("As senhas não coincidem!");
+                return;
+            }
+
+            window.location.href = "login.html";
+        }
+    </script>
+
+</body>
+</html>

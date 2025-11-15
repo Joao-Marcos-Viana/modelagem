@@ -8,42 +8,82 @@
   :root{
     --bg:#0b0b0d; --panel:#0f0f14; --card:#111217; --accent:#8a5cf6; --accent-2:#cfa3ff; --muted:#9aa0b4; --text:#e7e9ee; --glass: rgba(255,255,255,0.03); --success:#38d39f;
   }
-  [data-theme="light"]{ --bg:#f5f7fb; --panel:#ffffff; --card:#ffffff; --accent:#4f46e5; --accent-2:#8b5cf6; --muted:#64748b; --text:#081124; --glass: rgba(2,6,23,0.03); }
+  [data-theme="light"]{ 
+    --bg:#f5f7fb; --panel:#ffffff; --card:#ffffff; --accent:#4f46e5; --accent-2:#8b5cf6; --muted:#64748b; --text:#081124; --glass: rgba(2,6,23,0.03); 
+  }
   *{box-sizing:border-box}
   body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:linear-gradient(180deg,var(--bg),#050507);color:var(--text);-webkit-font-smoothing:antialiased}
-  header{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:linear-gradient(90deg,var(--card),#0b0b0d);border-bottom:1px solid rgba(0,0,0,0.06)}
+  
+  /* Header corrigido para modo claro */
+  header{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:var(--card);border-bottom:1px solid rgba(0,0,0,0.06)}
+  [data-theme="light"] header{background:var(--panel);border-bottom:1px solid rgba(0,0,0,0.1)}
+  
   .brand{display:flex;align-items:center;gap:12px}
   .logo-wrap{width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 6px 20px rgba(138,92,246,0.12)}
   h1{margin:0;font-size:1rem}
   main{display:flex;gap:18px;padding:18px}
   nav.side{width:300px}
   .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));border-radius:12px;padding:12px;border:1px solid rgba(255,255,255,0.03)}
+  [data-theme="light"] .card{background:var(--card);border:1px solid rgba(0,0,0,0.08)}
   .muted{color:var(--muted)}
   .small{font-size:0.86rem}
   .menu{display:flex;flex-direction:column;gap:8px}
   .menu button{background:transparent;border:0;color:var(--muted);text-align:left;padding:10px;border-radius:8px;cursor:pointer}
   .menu button.active{background:rgba(138,92,246,0.08);color:var(--text)}
+  [data-theme="light"] .menu button.active{background:rgba(79,70,229,0.08)}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
   .book{background:var(--card);border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:8px;cursor:pointer;border:1px solid rgba(255,255,255,0.02)}
+  [data-theme="light"] .book{background:var(--card);border:1px solid rgba(0,0,0,0.05)}
   .cover{width:100%;height:180px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#0a0a0d}
+  [data-theme="light"] .cover{background:#f0f0f0}
   .cover img{width:100%;height:100%;object-fit:cover}
   .title{font-size:0.92rem;margin:0}
   .controls{display:flex;gap:8px;align-items:center}
-  .btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));padding:8px 12px;border-radius:10px;border:0;color:#fff;cursor:pointer;font-weight:600}
-  .ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:7px 10px;border-radius:8px}
-  .badge{background:linear-gradient(90deg,var(--accent),var(--accent-2));padding:6px 8px;border-radius:999px;color:#fff;font-weight:700;font-size:0.75rem}
+  
+  /* Botões corrigidos - cores do texto sempre branco */
+  .btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));padding:8px 12px;border-radius:10px;border:0;color:#ffffff !important;cursor:pointer;font-weight:600}
+  .ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:7px 10px;border-radius:8px;color:var(--text)}
+  [data-theme="light"] .ghost{border:1px solid rgba(0,0,0,0.1);color:var(--text)}
+  
+  .badge{background:linear-gradient(90deg,var(--accent),var(--accent-2));padding:6px 8px;border-radius:999px;color:#ffffff !important;font-weight:700;font-size:0.75rem}
   .panel{display:flex;gap:12px}
   .panel .left{width:420px}
   .panel .right{flex:1}
   .book-full{display:flex;gap:12px}
   .thumb{width:200px;height:300px;border-radius:10px;overflow:hidden;background:#070708}
+  [data-theme="light"] .thumb{background:#f0f0f0}
   .progress{height:10px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden}
+  [data-theme="light"] .progress{background:rgba(0,0,0,0.08)}
   .progress > span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width 300ms}
   .toast-area{position:fixed;right:18px;top:70px;display:flex;flex-direction:column;gap:8px;z-index:50}
-  .toast{background:var(--card);padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 8px 20px rgba(0,0,0,0.3);min-width:220px}
+  .toast{background:var(--card);padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 8px 20px rgba(0,0,0,0.3);min-width:220px;color:var(--text)}
+  [data-theme="light"] .toast{border:1px solid rgba(0,0,0,0.08)}
   .friend{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px}
-  .dict-popup{position:fixed;background:var(--card);padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);z-index:60;max-width:300px}
+  .dict-popup{position:fixed;background:var(--card);padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);z-index:60;max-width:300px;color:var(--text)}
+  [data-theme="light"] .dict-popup{border:1px solid rgba(0,0,0,0.08)}
   footer{padding:18px;text-align:center;color:var(--muted);font-size:0.9rem}
+  
+  /* Inputs corrigidos */
+  input, select, textarea {
+    background:var(--glass) !important;
+    border:1px solid rgba(255,255,255,0.03) !important;
+    color:var(--text) !important;
+    padding:8px;
+    border-radius:8px;
+  }
+  [data-theme="light"] input, 
+  [data-theme="light"] select, 
+  [data-theme="light"] textarea {
+    background:var(--glass) !important;
+    border:1px solid rgba(0,0,0,0.1) !important;
+    color:var(--text) !important;
+  }
+  
+  /* Placeholder dos inputs */
+  ::placeholder {
+    color:var(--muted) !important;
+  }
+  
   @media(max-width:1000px){main{flex-direction:column}nav.side{width:100%}.panel .left{width:100%}}
 </style>
 </head>
@@ -58,7 +98,7 @@
       <div class="small muted">Rede literária & leitura</div>
     </div>
     <div style="margin-left:20px">
-      <input id="searchInput" placeholder="Pesquisar..." style="padding:8px;border-radius:8px;border:1px solid rgb(255, 255, 255);background:transparent;color:var(--text)" />
+      <input id="searchInput" placeholder="Pesquisar..." style="padding:8px;border-radius:8px;width:200px" />
     </div>
   </div>
 
@@ -123,7 +163,7 @@
           <div class="small muted">Encontre livros, gibis e playlists</div>
         </div>
         <div style="display:flex;gap:8px;align-items:center">
-          <select id="filterGenre" style="padding:8px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--text)"></select>
+          <select id="filterGenre" style="padding:8px;border-radius:8px;width:150px"></select>
           <button class="ghost" id="btnSort">Ordenar: Título</button>
         </div>
       </div>
@@ -239,163 +279,691 @@
 </footer>
 
 <script>
-// --- Data ---
-const famous = [
-  {title:"Harry Potter e a Pedra Filosofal", author:"J.K. Rowling", cover:"https://m.media-amazon.com/images/I/81iqZ2HHD-L.jpg", genre:"Fantasia"},
-  {title:"Dom Casmurro", author:"Machado de Assis", cover:"https://upload.wikimedia.org/wikipedia/pt/2/21/DomCasmurro.jpg", genre:"Clássico"},
-  {title:"Clean Code", author:"Robert C. Martin", cover:"https://m.media-amazon.com/images/I/41xShlnTZTL._SX374_BO1,204,203,200_.jpg", genre:"Programação"}
-];
-const gibisSeed = [
-  {title:"Turma da Mônica: Aventuras", author:"Mauricio", cover:"https://via.placeholder.com/400x600.png?text=Turma+da+M%C3%B4nica", genre:"Gibi"},
-  {title:"Batman: Ano Um", author:"Frank Miller", cover:"https://via.placeholder.com/400x600.png?text=Batman", genre:"Gibi"}
-];
-
-const technicalSeeds = [
-  {title:"Engenharia de Software Moderna", author:"A. Silva", cover:"https://via.placeholder.com/400x600.png?text=Engenharia", genre:"Engenharia"},
-  {title:"Inteligência Artificial", author:"Stuart Russell", cover:"https://m.media-amazon.com/images/I/51oHUvQW7nL.jpg", genre:"IA"}
-];
-
-function generateBooks(target=120){
-  const books = [];
-  const seeds = famous.concat(technicalSeeds).concat(gibisSeed);
-  for(let i=0;i<seeds.length;i++){
-    const s=seeds[i]; books.push({...s,id:books.length+1,pages:100+Math.floor(Math.random()*400),publisher:'Editora Demo',year:1990+(i%30),isbn:'000-'+(100000000+i)});
+// --- Sistema Organizado ---
+class LeituraPlusApp {
+  constructor() {
+    // APENAS OS LIVROS QUE VOCÊ QUER
+    this.BOOKS = [
+      {
+        id: 1,
+        title: "O Hobbit",
+        author: "J.R.R. Tolkien",
+        cover: "https://m.media-amazon.com/images/I/91b0C2YNSrL._AC_UF1000,1000_QL80_.jpg",
+        genre: "Fantasia",
+        pages: 310,
+        publisher: "HarperCollins",
+        year: 1937,
+        isbn: "978-0006754022",
+        description: "O Hobbit conta a história de Bilbo Bolseiro, um hobbit que se junta a uma jornada épica para recuperar um tesouro guardado por um dragão."
+      },
+      {
+        id: 2,
+        title: "1984",
+        author: "George Orwell",
+        cover: "https://m.media-amazon.com/images/I/71kxa1-0mfL._AC_UF1000,1000_QL80_.jpg",
+        genre: "Ficção Científica",
+        pages: 328,
+        publisher: "Companhia das Letras",
+        year: 1949,
+        isbn: "978-8535914849",
+        description: "Um clássico distópico sobre vigilância governamental e controle totalitário em um futuro sombrio."
+      },
+      {
+        id: 3,
+        title: "O Pequeno Príncipe",
+        author: "Antoine de Saint-Exupéry",
+        cover: "profileImages/download.jpg",
+        genre: "Literatura Infantil",
+        pages: 96,
+        publisher: "Agir",
+        year: 1943,
+        isbn: "978-8522005230",
+        description: "Uma fábula poética sobre amizade, amor e a essência da vida, contada por um pequeno príncipe de um asteroide distante."
+      },
+      {
+        id: 4,
+        title: "Orgulho e Preconceito",
+        author: "Jane Austen",
+        cover: "https://m.media-amazon.com/images/I/71Q1tPupKjL._AC_UF1000,1000_QL80_.jpg",
+        genre: "Romance",
+        pages: 432,
+        publisher: "Penguin Classics",
+        year: 1813,
+        isbn: "978-0141439518",
+        description: "Um dos romances mais famosos da literatura inglesa, explorando temas de amor, classe social e preconceito na Inglaterra rural."
+      },
+      {
+        id: 5,
+        title: "A Revolução dos Bichos",
+        author: "George Orwell",
+        cover: "profileImages/download (2).jpg",
+        genre: "Sátira Política",
+        pages: 152,
+        publisher: "Companhia das Letras",
+        year: 1945,
+        isbn: "978-8535913226",
+        description: "Uma fábula satírica sobre os animais de uma fazenda que se rebelam contra seus donos humanos, mas acabam criando uma tirania ainda pior."
+      },
+      {
+        id: 6,
+        title: "Senhor dos Anéis — A Sociedade do Anel",
+        author: "J.R.R. Tolkien",
+        cover: "https://m.media-amazon.com/images/I/71jLBXtWJWL._AC_UF1000,1000_QL80_.jpg",
+        genre: "Fantasia",
+        pages: 576,
+        publisher: "HarperCollins",
+        year: 1954,
+        isbn: "978-0007525543",
+        description: "O primeiro volume da trilogia épica que segue a jornada de Frodo Bolseiro para destruir o Um Anel na Montanha da Perdição."
+      },
+      {
+        id: 7,
+        title: "Clean Code",
+        author: "Robert C. Martin",
+        cover: "https://m.media-amazon.com/images/I/41xShlnTZTL._SX374_BO1,204,203,200_.jpg",
+        genre: "Programação",
+        pages: 464,
+        publisher: "Pearson",
+        year: 2008,
+        isbn: "978-0132350884",
+        description: "Um guia essencial para desenvolvedores sobre como escrever código limpo, legível e sustentável."
+      },
+      {
+        id: 8,
+        title: "Dom Casmurro",
+        author: "Machado de Assis",
+        cover: "profileImages/download (1).jpg",
+        genre: "Clássico",
+        pages: 256,
+        publisher: "Penguin Classics",
+        year: 1899,
+        isbn: "978-8535914849",
+        description: "Romance clássico da literatura brasileira que narra a história de Bentinho e sua desconfiança sobre a fidelidade de Capitu, explorando temas como ciúme, traição e memória."
+      }
+    ];
+    
+    this.currentBook = null;
+    
+    // Chaves do localStorage
+    this.LS_KEYS = {
+      FAV: 'leituraplus_favorites_v2',
+      SHELF: 'leituraplus_shelf_v2',
+      PROGRESS: 'leituraplus_progress_v2',
+      FOLLOW: 'leituraplus_follow_v2',
+      NOTIFS: 'leituraplus_notifs_v2',
+      COMMENTS: 'leituraplus_comments_v1'
+    };
+    
+    // Estado
+    this.favorites = JSON.parse(localStorage.getItem(this.LS_KEYS.FAV) || '[]');
+    this.shelf = JSON.parse(localStorage.getItem(this.LS_KEYS.SHELF) || '[]');
+    this.progress = JSON.parse(localStorage.getItem(this.LS_KEYS.PROGRESS) || '{}');
+    this.follows = JSON.parse(localStorage.getItem(this.LS_KEYS.FOLLOW) || '[]');
+    this.notifs = JSON.parse(localStorage.getItem(this.LS_KEYS.NOTIFS) || '[]');
+    
+    this.init();
   }
-  const genres = ["Programação","Engenharia","Contabilidade","Direito","Redes","TI","Matemática","Física","Biologia","Administração","Fantasia","Clássico","Gibi"];
-  const words1=["Fundamentos","Guia","Manual","Introdução","Prática","Avançado","Técnicas"];
-  const words2=["de Programação","de Redes","de Contabilidade","de Sistemas","de Dados","para Desenvolvedores","para Estudantes"];
-  const authors=["A. Silva","B. Santos","C. Pereira","D. Souza","E. Ribeiro"];
-  while(books.length<target){
-    const g = genres[Math.floor(Math.random()*genres.length)];
-    const t = words1[Math.floor(Math.random()*words1.length)]+' '+words2[Math.floor(Math.random()*words2.length)];
-    const a = authors[Math.floor(Math.random()*authors.length)];
-    books.push({id:books.length+1,title:t,author:a,cover:'https://via.placeholder.com/400x600.png?text='+encodeURIComponent(t),genre:g,pages:120+Math.floor(Math.random()*480),publisher:['Atlas','Elsevier','Pearson'][Math.floor(Math.random()*3)],year:1980+Math.floor(Math.random()*45),isbn:'978-'+(100000000+books.length)});
+
+  // --- Inicialização ---
+  init() {
+    this.populateGenreFilter();
+    this.renderGrid(this.BOOKS, document.getElementById('sectionGrid'));
+    this.renderShelf();
+    this.renderGibis();
+    this.renderFriends();
+    this.updateNotifCount();
+    this.setupEventListeners();
+    this.showView('library');
   }
-  return books;
+
+  // --- Utilitários ---
+  escapeHtml(s) { 
+    return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); 
+  }
+
+  qs(sel) { return document.querySelector(sel); }
+  qsa(sel) { return Array.from(document.querySelectorAll(sel)); }
+
+  // --- Renderizadores ---
+  uniqueGenres() { 
+    return Array.from(new Set(this.BOOKS.map(b => b.genre))).sort(); 
+  }
+
+  populateGenreFilter() {
+    const filterGenre = this.qs('#filterGenre');
+    const genres = this.uniqueGenres();
+    filterGenre.innerHTML = '';
+    
+    const opt = document.createElement('option');
+    opt.value = '';
+    opt.textContent = 'Todos';
+    filterGenre.appendChild(opt);
+    
+    genres.forEach(g => {
+      const o = document.createElement('option');
+      o.value = g;
+      o.textContent = g;
+      filterGenre.appendChild(o);
+    });
+  }
+
+  renderGrid(list, container) {
+    container.innerHTML = '';
+    list.forEach(book => {
+      const el = document.createElement('div');
+      el.className = 'book';
+      el.dataset.id = book.id;
+      el.innerHTML = `
+        <div class="cover"><img src="${book.cover}" alt="${this.escapeHtml(book.title)}" onerror="this.src='https://via.placeholder.com/400x600.png?text=Capa+Não+Encontrada'"></div>
+        <div>
+          <div class="title">${this.escapeHtml(book.title)}</div>
+          <div class="small muted">${this.escapeHtml(book.author)}</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+            <div class="small muted">${this.escapeHtml(book.genre)}</div>
+            <div style="display:flex;gap:6px">
+              <button class="ghost btn-open" data-id="${book.id}">Abrir</button>
+              ${this.favorites.includes(book.id) ? 
+                '<button class="btn btn-unfav" data-id="' + book.id + '">♥</button>' : 
+                '<button class="ghost btn-fav" data-id="' + book.id + '">♡</button>'}
+            </div>
+          </div>
+        </div>
+      `;
+      container.appendChild(el);
+    });
+  }
+
+  // --- Event Listeners ---
+  setupEventListeners() {
+    // Pesquisa e filtros
+    this.qs('#searchInput').addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      const g = this.qs('#filterGenre').value;
+      let res = this.BOOKS.filter(b => 
+        (!g || b.genre === g) && 
+        (b.title + b.author + b.genre).toLowerCase().includes(q)
+      );
+      this.renderGrid(res, this.qs('#sectionGrid'));
+    });
+
+    this.qs('#filterGenre').addEventListener('change', () => {
+      this.qs('#searchInput').dispatchEvent(new Event('input'));
+    });
+
+    this.qs('#btnSort').addEventListener('click', () => {
+      this.BOOKS.sort((a, b) => a.title.localeCompare(b.title));
+      this.renderGrid(this.BOOKS, this.qs('#sectionGrid'));
+    });
+
+    // Grid de livros
+    this.qs('#sectionGrid').addEventListener('click', e => {
+      if (e.target.matches('.btn-open')) {
+        this.openBookDetail(e.target.dataset.id);
+      }
+      if (e.target.matches('.btn-fav')) {
+        this.toggleFavorite(Number(e.target.dataset.id));
+        this.renderGrid(this.BOOKS, this.qs('#sectionGrid'));
+      }
+      if (e.target.matches('.btn-unfav')) {
+        this.toggleFavorite(Number(e.target.dataset.id));
+        this.renderGrid(this.BOOKS, this.qs('#sectionGrid'));
+      }
+    });
+
+    // Navegação
+    this.qsa('.menu button').forEach(b => {
+      b.addEventListener('click', () => {
+        this.qsa('.menu button').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        this.showView(b.dataset.view);
+      });
+    });
+
+    // Detalhes do livro
+    this.qs('#btnBack').addEventListener('click', () => {
+      this.qs('#viewBook').style.display = 'none';
+      this.qs('#sectionGrid').closest('.card').style.display = '';
+    });
+
+    this.qs('#btnFavorite').addEventListener('click', () => {
+      this.toggleFavorite(this.currentBook.id);
+      this.updateFavoriteButton();
+      this.renderShelf();
+    });
+
+    this.qs('#btnAddShelf').addEventListener('click', () => {
+      if (!this.shelf.includes(this.currentBook.id)) {
+        this.shelf.unshift(this.currentBook.id);
+        localStorage.setItem(this.LS_KEYS.SHELF, JSON.stringify(this.shelf));
+        this.pushNotif('Adicionado à Minha Estante');
+        this.renderShelf();
+      }
+    });
+
+    // Comentários
+    this.qs('#btnAddComment').addEventListener('click', () => {
+      const name = this.qs('#commentUser').value.trim() || 'Visitante';
+      const text = this.qs('#commentText').value.trim();
+      if (!text) return alert('Escreva um comentário.');
+      
+      const all = this.loadComments();
+      if (!all[this.currentBook.id]) all[this.currentBook.id] = [];
+      all[this.currentBook.id].unshift({
+        name,
+        text,
+        date: new Date().toLocaleString()
+      });
+      
+      this.saveComments(all);
+      this.qs('#commentText').value = '';
+      this.renderComments(this.currentBook.id);
+      this.pushNotif(`${name} comentou em ${this.currentBook.title}`);
+    });
+
+    // Chat
+    this.qs('#btnSendChat').addEventListener('click', () => {
+      const name = this.qs('#chatName').value.trim() || 'Anon';
+      const text = this.qs('#chatMsg').value.trim();
+      if (!text) return;
+      
+      const key = 'leituraplus_chat_' + this.currentBook.id;
+      const arr = localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : [];
+      arr.push({
+        name,
+        text,
+        date: new Date().toLocaleTimeString()
+      });
+      
+      localStorage.setItem(key, JSON.stringify(arr));
+      this.qs('#chatMsg').value = '';
+      this.renderChat(this.currentBook.id);
+      this.pushNotif(`${name} enviou mensagem no chat de ${this.currentBook.title}`);
+    });
+
+    // Progresso
+    this.qs('#progressRange').addEventListener('input', e => {
+      const v = Number(e.target.value);
+      this.qs('#progressBar').style.width = v + '%';
+      this.qs('#progressLabel').textContent = v + '%';
+    });
+
+    this.qs('#progressRange').addEventListener('change', e => {
+      const v = Number(e.target.value);
+      this.progress[this.currentBook.id] = v;
+      localStorage.setItem(this.LS_KEYS.PROGRESS, JSON.stringify(this.progress));
+      this.pushNotif(`Progresso salvo: ${v}% em ${this.currentBook.title}`);
+      this.renderShelf();
+    });
+
+    // Notificações
+    this.qs('#btnNotifications').addEventListener('click', () => {
+      const list = this.notifs.slice(0, 10);
+      if (!list.length) return alert('Sem notificações');
+      
+      let text = 'Notificações:\n\n';
+      list.forEach(n => text += `${n.date} — ${n.text}\n`);
+      alert(text);
+      
+      this.notifs = [];
+      localStorage.setItem(this.LS_KEYS.NOTIFS, JSON.stringify(this.notifs));
+      this.updateNotifCount();
+    });
+
+    // Tema
+    this.qs('#btnTheme').addEventListener('click', () => {
+      const body = document.body;
+      const cur = body.getAttribute('data-theme');
+      if (cur === 'dark') {
+        body.setAttribute('data-theme', 'light');
+        this.qs('#btnTheme').textContent = 'Modo Escuro';
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        this.qs('#btnTheme').textContent = 'Modo Claro';
+      }
+    });
+
+    // Novo livro
+    this.qs('#btnNewBook').addEventListener('click', () => {
+      const t = prompt('Título do livro (mock):', 'Novo Livro Exemplo');
+      if (!t) return;
+      
+      const book = {
+        id: this.BOOKS.length + 1,
+        title: t,
+        author: 'Autor Demo',
+        cover: 'https://via.placeholder.com/400x600.png?text=' + encodeURIComponent(t),
+        genre: 'Geral',
+        pages: 200,
+        publisher: 'Editora Demo',
+        year: 2025,
+        isbn: '000-0000000000',
+        description: 'Descrição do novo livro adicionado.'
+      };
+      
+      this.BOOKS.unshift(book);
+      this.renderGrid(this.BOOKS, this.qs('#sectionGrid'));
+      this.pushNotif('Livro adicionado (mock)');
+    });
+
+    // Playlist do usuário
+    this.qs('#userPlaylist').addEventListener('click', e => {
+      e.preventDefault();
+      const url = prompt('Cole o link da sua playlist Spotify (simulado):', 'https://open.spotify.com/');
+      if (!url) return;
+      
+      this.qs('#userPlaylist').dataset.link = url;
+      this.qs('#userPlaylist').textContent = 'Minha playlist (salva)';
+      localStorage.setItem('leituraplus_user_playlist', url);
+    });
+
+    // Dicionário
+    this.qs('#fullDesc').addEventListener('mouseup', e => {
+      const sel = window.getSelection().toString().trim();
+      if (sel.length > 0) {
+        const rect = window.getSelection().getRangeAt(0).getBoundingClientRect();
+        this.showDictFor(sel, rect.left + window.scrollX, rect.bottom + window.scrollY);
+      }
+    });
+
+    // Amigos
+    this.qs('#friendsList').addEventListener('click', e => {
+      if (e.target.matches('.btn-follow')) {
+        const id = Number(e.target.dataset.id);
+        if (this.follows.includes(id)) {
+          this.follows = this.follows.filter(x => x !== id);
+          this.pushNotif('Deixou de seguir um amigo');
+        } else {
+          this.follows.push(id);
+          this.pushNotif('Você está seguindo um amigo');
+        }
+        localStorage.setItem(this.LS_KEYS.FOLLOW, JSON.stringify(this.follows));
+        this.renderFriends();
+        this.updateFollowStats();
+      }
+    });
+  }
+
+  // --- Funcionalidades Principais ---
+  <!-- No script da main.html, modifique a função openBookDetail: -->
+
+  openBookDetail(id) {
+    const book = this.BOOKS.find(b => b.id == id);
+    if (!book) return;
+    
+    // Redirecionar para view.html com os dados do livro
+    const bookData = encodeURIComponent(JSON.stringify(book));
+    window.location.href = `view.html?book=${bookData}`;
+  }
+
+  showView(v) {
+    this.qs('#sectionGrid').closest('.card').style.display = v === 'library' ? '' : 'none';
+    this.qs('#viewBook').style.display = 'none';
+    this.qs('#viewShelf').style.display = v === 'shelf' ? '' : 'none';
+    this.qs('#viewGibis').style.display = v === 'gibis' ? '' : 'none';
+    this.qs('#viewFriends').style.display = v === 'friends' ? '' : 'none';
+    
+    if (v === 'shelf') {
+      this.renderShelf();
+    }
+    if (v === 'gibis') {
+      this.renderGibis();
+    }
+  }
+
+  // --- Favoritos ---
+  toggleFavorite(id) {
+    if (this.favorites.includes(id)) {
+      this.favorites = this.favorites.filter(x => x !== id);
+      this.pushNotif('Removido dos favoritos');
+    } else {
+      this.favorites.push(id);
+      this.pushNotif('Adicionado aos favoritos');
+    }
+    localStorage.setItem(this.LS_KEYS.FAV, JSON.stringify(this.favorites));
+  }
+
+  updateFavoriteButton() {
+    if (!this.currentBook) return;
+    this.qs('#btnFavorite').textContent = this.favorites.includes(this.currentBook.id) ? 
+      '♥ Favorito' : '♡ Favoritar';
+  }
+
+  // --- Estante ---
+  renderShelf() {
+    const el = this.qs('#shelfGrid');
+    el.innerHTML = '';
+    const list = this.shelf.map(id => this.BOOKS.find(b => b.id === id)).filter(Boolean);
+    
+    if (!list.length) {
+      el.innerHTML = '<div class="muted">Sua estante está vazia — adicione livros!</div>';
+    } else {
+      this.renderGrid(list, el);
+    }
+  }
+
+  // --- Gibis ---
+  renderGibis() {
+    const el = this.qs('#gibisGrid');
+    const list = this.BOOKS.filter(b => b.genre === 'Gibi');
+    if (list.length === 0) {
+      el.innerHTML = '<div class="muted">Nenhum gibi encontrado.</div>';
+    } else {
+      this.renderGrid(list, el);
+    }
+  }
+
+  // --- Comentários ---
+  loadComments() {
+    const s = localStorage.getItem(this.LS_KEYS.COMMENTS);
+    return s ? JSON.parse(s) : {};
+  }
+
+  saveComments(obj) {
+    localStorage.setItem(this.LS_KEYS.COMMENTS, JSON.stringify(obj));
+  }
+
+  renderComments(bookId) {
+    const area = this.qs('#commentsArea');
+    const all = this.loadComments();
+    const arr = all[bookId] || [];
+    
+    area.innerHTML = '';
+    if (!arr.length) {
+      area.innerHTML = '<div class="muted">Sem comentários — seja o primeiro!</div>';
+    } else {
+      arr.forEach((c, idx) => {
+        const d = document.createElement('div');
+        d.className = 'comment';
+        d.style.border = '1px solid rgba(255,255,255,0.02)';
+        d.style.padding = '8px';
+        d.style.borderRadius = '8px';
+        d.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <b>${this.escapeHtml(c.name)}</b>
+              <div class="small muted">${this.escapeHtml(c.date)}</div>
+            </div>
+            <button class="ghost" data-idx="${idx}" data-book="${bookId}">Excluir</button>
+          </div>
+          <div style="margin-top:6px">${this.escapeHtml(c.text)}</div>
+        `;
+        area.appendChild(d);
+      });
+    }
+    
+    // Adicionar event listeners para excluir comentários
+    area.querySelectorAll('.ghost').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const bookId = e.target.dataset.book;
+        const idx = Number(e.target.dataset.idx);
+        const all = this.loadComments();
+        if (!all[bookId]) return;
+        
+        if (confirm('Excluir comentário?')) {
+          all[bookId].splice(idx, 1);
+          this.saveComments(all);
+          this.renderComments(bookId);
+        }
+      });
+    });
+  }
+
+  // --- Chat ---
+  renderChat(bookId) {
+    const key = 'leituraplus_chat_' + bookId;
+    const arr = localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : [];
+    const box = this.qs('#chatBox');
+    
+    box.innerHTML = '';
+    if (!arr.length) {
+      box.innerHTML = '<div class="muted">Nenhuma mensagem — inicie a conversa!</div>';
+    } else {
+      arr.forEach(m => {
+        const p = document.createElement('div');
+        p.className = 'small';
+        p.innerHTML = `
+          <b>${this.escapeHtml(m.name)}</b> 
+          <span class="muted">(${this.escapeHtml(m.date)})</span>
+          <div>${this.escapeHtml(m.text)}</div>
+        `;
+        box.appendChild(p);
+      });
+    }
+    box.scrollTop = box.scrollHeight;
+  }
+
+  // --- Progresso ---
+  renderProgress(bookId) {
+    const val = this.progress[bookId] || 0;
+    this.qs('#progressBar').style.width = val + '%';
+    this.qs('#progressRange').value = val;
+    this.qs('#progressLabel').textContent = val + '%';
+  }
+
+  // --- Amigos ---
+  renderFriends() {
+    const sampleFriends = [
+      {id:1, name:'Camila R.', status:'Lendo Clean Code'},
+      {id:2, name:'Lucas M.', status:'Comentou Dom Casmurro'},
+      {id:3, name:'Beatriz S.', status:'Seguindo a saga'}
+    ];
+    
+    const el = this.qs('#friendsList');
+    el.innerHTML = '';
+    
+    sampleFriends.forEach(f => {
+      const d = document.createElement('div');
+      d.className = 'friend';
+      d.innerHTML = `
+        <div>
+          <b>${f.name}</b>
+          <div class="small muted">${f.status}</div>
+        </div>
+        <div>
+          <button class="ghost btn-follow" data-id="${f.id}">
+            ${this.follows.includes(f.id) ? 'Seguindo' : 'Seguir'}
+          </button>
+        </div>
+      `;
+      el.appendChild(d);
+    });
+  }
+
+  updateFollowStats() {
+    this.qs('#statFollowing').textContent = this.follows.length;
+  }
+
+  // --- Notificações ---
+  pushNotif(text) {
+    const item = {
+      text,
+      date: new Date().toLocaleString()
+    };
+    
+    this.notifs.unshift(item);
+    localStorage.setItem(this.LS_KEYS.NOTIFS, JSON.stringify(this.notifs));
+    this.showToast(item);
+    this.updateNotifCount();
+  }
+
+  showToast(item) {
+    const area = this.qs('#toastArea');
+    const t = document.createElement('div');
+    t.className = 'toast';
+    t.textContent = item.text;
+    area.appendChild(t);
+    
+    setTimeout(() => {
+      t.style.opacity = '0';
+      t.style.transition = 'opacity 400ms';
+      setTimeout(() => t.remove(), 400);
+    }, 4000);
+  }
+
+  updateNotifCount() {
+    this.qs('#notifCount').textContent = this.notifs.length || 0;
+  }
+
+  // --- Sugestões ---
+  renderSuggestions(genre) {
+    const sug = this.BOOKS
+      .filter(b => b.genre === genre && b.id !== this.currentBook.id)
+      .slice(0, 4)
+      .map(b => b.title)
+      .join(', ');
+    
+    this.qs('#suggestions').textContent = sug || 'Sem sugestões';
+  }
+
+  // --- Dicionário ---
+  showDictFor(word, x, y) {
+    const DICT = {
+      'algoritmo': 'Conjunto de instruções passo a passo para resolver um problema.',
+      'classe': 'Estrutura que define objetos em programação orientada a objetos.',
+      'variável': 'Espaço de armazenamento nomeado para dados.',
+      'hobbit': 'Criatura fictícia da Terra-média, conhecida por ser pequena e viver em buracos confortáveis.',
+      'distopia': 'Sociedade imaginária onde há grande sofrimento ou injustiça.',
+      'príncipe': 'Filho de um rei ou governante; pessoa de alta posição social.',
+      'preconceito': 'Opinião formada antecipadamente sem conhecimento adequado.',
+      'revolução': 'Mudança radical e abrupta em uma sociedade ou sistema.',
+      'anel': 'Objeto circular usado como joia ou símbolo de poder.',
+      'código': 'Conjunto de instruções escritas em linguagem de programação.'
+    };
+    
+    const popup = this.qs('#dictPopup');
+    const def = DICT[word.toLowerCase()] || 'Definição não encontrada (simulada).';
+    
+    popup.innerHTML = `
+      <b>${this.escapeHtml(word)}</b>
+      <div class="small muted" style="margin-top:6px">${this.escapeHtml(def)}</div>
+    `;
+    popup.style.left = x + 'px';
+    popup.style.top = y + 'px';
+    popup.style.display = 'block';
+    
+    setTimeout(() => popup.style.display = 'none', 7000);
+  }
 }
-const BOOKS = generateBooks(120);
 
-// --- Persistence keys ---
-const LS_FAV = 'leituraplus_favorites_v2';
-const LS_SHELF = 'leituraplus_shelf_v2';
-const LS_PROGRESS = 'leituraplus_progress_v2';
-const LS_FOLLOW = 'leituraplus_follow_v2';
-const LS_NOTIFS = 'leituraplus_notifs_v2';
+// Inicializar a aplicação quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', () => {
+  window.app = new LeituraPlusApp();
+});
 
-// --- Utilities ---
-function escapeHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function qs(sel){ return document.querySelector(sel); }
-function qsa(sel){ return Array.from(document.querySelectorAll(sel)); }
-
-// --- State ---
-let currentBook=null;
-let favorites = JSON.parse(localStorage.getItem(LS_FAV) || '[]');
-let shelf = JSON.parse(localStorage.getItem(LS_SHELF) || '[]');
-let progress = JSON.parse(localStorage.getItem(LS_PROGRESS) || '{}');
-let follows = JSON.parse(localStorage.getItem(LS_FOLLOW) || '[]');
-let notifs = JSON.parse(localStorage.getItem(LS_NOTIFS) || '[]');
-
-// --- Renderers ---
-const sectionGrid = qs('#sectionGrid');
-const filterGenre = qs('#filterGenre');
-function uniqueGenres(){ return Array.from(new Set(BOOKS.map(b=>b.genre))).sort(); }
-function populateGenreFilter(){ const genres = uniqueGenres(); filterGenre.innerHTML=''; const opt=document.createElement('option'); opt.value=''; opt.textContent='Todos'; filterGenre.appendChild(opt); genres.forEach(g=>{const o=document.createElement('option'); o.value=g; o.textContent=g; filterGenre.appendChild(o);}); }
-function renderGrid(list, container){ container.innerHTML=''; list.forEach(book=>{ const el=document.createElement('div'); el.className='book'; el.dataset.id=book.id; el.innerHTML=`<div class="cover"><img src="${book.cover}" alt="${escapeHtml(book.title)}"></div><div><div class="title">${escapeHtml(book.title)}</div><div class="small muted">${escapeHtml(book.author)}</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px"><div class="small muted">${escapeHtml(book.genre)}</div><div style="display:flex;gap:6px"><button class="ghost btn-open" data-id="${book.id}">Abrir</button>${favorites.includes(book.id)?'<button class="btn btn-unfav" data-id="'+book.id+'">♥</button>':'<button class="ghost btn-fav" data-id="'+book.id+'">♡</button>'}</div></div></div>`; container.appendChild(el); }); }
-
-// initial
-populateGenreFilter(); renderGrid(BOOKS.slice(0,36), sectionGrid); renderShelf(); renderGibis(); renderFriends(); updateNotifCount();
-
-// search/filter handlers
-qs('#searchInput').addEventListener('input', e=>{ const q=e.target.value.trim().toLowerCase(); const g=filterGenre.value; let res=BOOKS.filter(b=>(!g||b.genre===g) && (b.title+b.author+b.genre).toLowerCase().includes(q)); renderGrid(res, sectionGrid); });
-filterGenre.addEventListener('change', ()=>{ qs('#searchInput').dispatchEvent(new Event('input')); });
-qs('#btnSort').addEventListener('click', ()=>{ BOOKS.sort((a,b)=>a.title.localeCompare(b.title)); qs('#searchInput').dispatchEvent(new Event('input')); });
-
-// open book detail
-sectionGrid.addEventListener('click', e=>{ if(e.target.matches('.btn-open')) openBookDetail(e.target.dataset.id); if(e.target.matches('.btn-fav')){ toggleFavorite(Number(e.target.dataset.id)); renderGrid(BOOKS.slice(0,36), sectionGrid);} if(e.target.matches('.btn-unfav')){ toggleFavorite(Number(e.target.dataset.id)); renderGrid(BOOKS.slice(0,36), sectionGrid);} });
-
-function openBookDetail(id){ const book=BOOKS.find(b=>b.id==id); if(!book) return; currentBook=book; qs('#viewBook').style.display=''; qs('#viewShelf').style.display='none'; qs('#viewGibis').style.display='none'; qs('#viewFriends').style.display='none'; qs('#sectionGrid').closest('.card').style.display='none'; document.getElementById('fullCoverWrap').querySelector('img').src=book.cover; qs('#fullTitle').textContent=book.title; qs('#fullAuthor').textContent=book.author; qs('#fullDesc').textContent=`${book.title} — (${book.genre}). Este texto é interativo: selecione uma palavra para ver definição.`; qs('#infoGenre').textContent=book.genre; qs('#infoPages').textContent=book.pages; qs('#infoPublisher').textContent=book.publisher; qs('#infoISBN').textContent=book.isbn; qs('#spotifyLink').href=book.spotify||'#'; qs('#spotifyLink').textContent=book.spotify? 'Ouvir (spotify)' : 'Nenhuma playlist'; renderComments(book.id); renderChat(book.id); renderProgress(book.id); renderSuggestions(book.genre);
-}
-qs('#btnBack').addEventListener('click', ()=>{ qs('#viewBook').style.display='none'; qs('#sectionGrid').closest('.card').style.display=''; });
-
-// Favorites / Shelf
-function toggleFavorite(id){ if(favorites.includes(id)){ favorites = favorites.filter(x=>x!==id); pushNotif('Removido dos favoritos'); } else { favorites.push(id); pushNotif('Adicionado aos favoritos'); } localStorage.setItem(LS_FAV, JSON.stringify(favorites)); }
-qs('#btnFavorite').addEventListener('click', ()=>{ toggleFavorite(currentBook.id); updateFavoriteButton(); renderShelf(); });
-qs('#btnAddShelf').addEventListener('click', ()=>{ if(!shelf.includes(currentBook.id)){ shelf.unshift(currentBook.id); localStorage.setItem(LS_SHELF, JSON.stringify(shelf)); pushNotif('Adicionado à Minha Estante'); renderShelf(); } });
-function renderShelf(){ const el=qs('#shelfGrid'); el.innerHTML=''; const list = shelf.map(id=>BOOKS.find(b=>b.id===id)).filter(Boolean); if(!list.length) el.innerHTML='<div class="muted">Sua estante está vazia — adicione livros!</div>'; else renderGrid(list, el); }
-
-// Gibis
-function renderGibis(){ const el=qs('#gibisGrid'); const list = BOOKS.filter(b=>b.genre==='Gibi'); renderGrid(list, el); }
-
-// Comments
-const LS_COMMENTS = 'leituraplus_comments_v1';
-function loadComments(){ const s=localStorage.getItem(LS_COMMENTS); return s?JSON.parse(s):{}; }
-function saveComments(obj){ localStorage.setItem(LS_COMMENTS, JSON.stringify(obj)); }
-function renderComments(bookId){ const area=qs('#commentsArea'); const all=loadComments(); const arr=all[bookId]||[]; area.innerHTML=''; if(!arr.length) area.innerHTML='<div class="muted">Sem comentários — seja o primeiro!</div>'; else{ arr.forEach((c,idx)=>{ const d=document.createElement('div'); d.className='comment'; d.style.border='1px solid rgba(255,255,255,0.02)'; d.style.padding='8px'; d.style.borderRadius='8px'; d.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center"><div><b>${escapeHtml(c.name)}</b><div class="small muted">${escapeHtml(c.date)}</div></div><button class="ghost" data-idx="${idx}" data-book="${bookId}">Excluir</button></div><div style="margin-top:6px">${escapeHtml(c.text)}</div>`; area.appendChild(d); }) }
-}
-qs('#commentsArea').addEventListener('click', e=>{ if(e.target.matches('.ghost') && e.target.dataset.idx){ const b=e.target.dataset.book; const i=Number(e.target.dataset.idx); const all=loadComments(); if(!all[b]) return; if(confirm('Excluir comentário?')){ all[b].splice(i,1); saveComments(all); renderComments(b); } } });
-qs('#btnAddComment').addEventListener('click', ()=>{ const name=qs('#commentUser').value.trim()||'Visitante'; const text=qs('#commentText').value.trim(); if(!text) return alert('Escreva um comentário.'); const all=loadComments(); if(!all[currentBook.id]) all[currentBook.id]=[]; all[currentBook.id].unshift({name,text,date:new Date().toLocaleString()}); saveComments(all); qs('#commentText').value=''; renderComments(currentBook.id); pushNotif(`${name} comentou em ${currentBook.title}`); });
-
-// Chat
-function renderChat(bookId){ const key='leituraplus_chat_'+bookId; const arr=localStorage.getItem(key)?JSON.parse(localStorage.getItem(key)):[]; const box=qs('#chatBox'); box.innerHTML=''; if(!arr.length) box.innerHTML='<div class="muted">Nenhuma mensagem — inicie a conversa!</div>'; else arr.forEach(m=>{ const p=document.createElement('div'); p.className='small'; p.innerHTML=`<b>${escapeHtml(m.name)}</b> <span class="muted">(${escapeHtml(m.date)})</span><div>${escapeHtml(m.text)}</div>`; box.appendChild(p); }); box.scrollTop=box.scrollHeight; }
-qs('#btnSendChat').addEventListener('click', ()=>{ const name=qs('#chatName').value.trim()||'Anon'; const text=qs('#chatMsg').value.trim(); if(!text) return; const key='leituraplus_chat_'+currentBook.id; const arr=localStorage.getItem(key)?JSON.parse(localStorage.getItem(key)):[]; arr.push({name,text,date:new Date().toLocaleTimeString()}); localStorage.setItem(key, JSON.stringify(arr)); qs('#chatMsg').value=''; renderChat(currentBook.id); pushNotif(`${name} enviou mensagem no chat de ${currentBook.title}`); });
-
-// Progress
-function renderProgress(bookId){ const val = progress[bookId] || 0; qs('#progressBar').style.width = val + '%'; qs('#progressRange').value = val; qs('#progressLabel').textContent = val + '%'; updateProgressUI(val); updateFavoriteButton(); }
-qs('#progressRange').addEventListener('input', e=>{ const v=Number(e.target.value); qs('#progressBar').style.width=v+'%'; qs('#progressLabel').textContent=v+'%'; updateProgressUI(v); });
-qs('#progressRange').addEventListener('change', e=>{ const v=Number(e.target.value); progress[currentBook.id]=v; localStorage.setItem(LS_PROGRESS, JSON.stringify(progress)); pushNotif(`Progresso salvo: ${v}% em ${currentBook.title}`); renderShelf(); });
-function updateProgressUI(v){ /* placeholder for animations */ }
-
-// Follow / Friends
-const sampleFriends = [ {id:1,name:'Camila R.',status:'Lendo Clean Code'}, {id:2,name:'Lucas M.',status:'Comentou Dom Casmurro'}, {id:3,name:'Beatriz S.',status:'Seguindo a saga'} ];
-function renderFriends(){ const el=qs('#friendsList'); el.innerHTML=''; sampleFriends.forEach(f=>{ const d=document.createElement('div'); d.className='friend'; d.innerHTML=`<div><b>${f.name}</b><div class="small muted">${f.status}</div></div><div><button class="ghost btn-follow" data-id="${f.id}">${follows.includes(f.id)?'Seguindo':'Seguir'}</button></div>`; el.appendChild(d); }); }
-qs('#friendsList').addEventListener('click', e=>{ if(e.target.matches('.btn-follow')){ const id=Number(e.target.dataset.id); if(follows.includes(id)){ follows = follows.filter(x=>x!==id); pushNotif('Deixou de seguir um amigo'); } else { follows.push(id); pushNotif('Você está seguindo um amigo'); } localStorage.setItem(LS_FOLLOW, JSON.stringify(follows)); renderFriends(); updateFollowStats(); } });
-function updateFollowStats(){ qs('#statFollowing').textContent = follows.length; }
-updateFollowStats();
-
-// Notifications (simuladas)
-function pushNotif(text){ const item={text,date:new Date().toLocaleString()}; notifs.unshift(item); localStorage.setItem(LS_NOTIFS, JSON.stringify(notifs)); showToast(item); updateNotifCount(); }
-function showToast(item){ const area=qs('#toastArea'); const t=document.createElement('div'); t.className='toast'; t.textContent = item.text; area.appendChild(t); setTimeout(()=>{ t.style.opacity=0; t.style.transition='opacity 400ms'; setTimeout(()=>t.remove(),400); },4000); }
-function updateNotifCount(){ qs('#notifCount').textContent = notifs.length || 0; }
-qs('#btnNotifications').addEventListener('click', ()=>{ const list = notifs.slice(0,10); if(!list.length) return alert('Sem notificações'); let text='Notificações:\n\n'; list.forEach(n=> text+=`${n.date} — ${n.text}\n`); alert(text); notifs=[]; localStorage.setItem(LS_NOTIFS, JSON.stringify(notifs)); updateNotifCount(); });
-
-// Suggestions
-function renderSuggestions(genre){ const sug = BOOKS.filter(b=>b.genre===genre && b.id!==currentBook.id).slice(0,4).map(b=>b.title).join(', '); qs('#suggestions').textContent = sug || 'Sem sugestões'; }
-
-// Theme toggle
-const body = document.body;
-qs('#btnTheme').addEventListener('click', ()=>{ const cur = body.getAttribute('data-theme'); if(cur==='dark'){ body.setAttribute('data-theme','light'); qs('#btnTheme').textContent='Modo Escuro'; } else { body.setAttribute('data-theme','dark'); qs('#btnTheme').textContent='Modo Claro'; } });
-
-// Dictionary (simulada)
-const DICT = { 'algoritmo':'Conjunto de instruções passo a passo para resolver um problema.', 'classe':'Estrutura que define objetos em programação orientada a objetos.', 'variável':'Espaço de armazenamento nomeado para dados.' };
-function showDictFor(word, x, y){ const popup = qs('#dictPopup'); const def = DICT[word.toLowerCase()] || 'Definição não encontrada (simulada).'; popup.innerHTML = `<b>${escapeHtml(word)}</b><div class="small muted" style="margin-top:6px">${escapeHtml(def)}</div>`; popup.style.left = x+'px'; popup.style.top = y+'px'; popup.style.display='block'; setTimeout(()=>popup.style.display='none',7000); }
-qs('#fullDesc').addEventListener('mouseup', e=>{ const sel = window.getSelection().toString().trim(); if(sel.length>0){ const rect = window.getSelection().getRangeAt(0).getBoundingClientRect(); showDictFor(sel, rect.left+window.scrollX, rect.bottom+window.scrollY); } });
-
-// Playlist links (user-saved)
-qs('#userPlaylist').addEventListener('click', e=>{ e.preventDefault(); const url = prompt('Cole o link da sua playlist Spotify (simulado):','https://open.spotify.com/'); if(!url) return; qs('#userPlaylist').dataset.link = url; qs('#userPlaylist').textContent = 'Minha playlist (salva)'; localStorage.setItem('leituraplus_user_playlist', url); });
-
-// Navigation between views
-qsa('.menu button').forEach(b=> b.addEventListener('click', ()=>{ qsa('.menu button').forEach(x=>x.classList.remove('active')); b.classList.add('active'); const v=b.dataset.view; showView(v); }));
-function showView(v){ qs('#sectionGrid').closest('.card').style.display = v==='library' ? '' : 'none'; qs('#viewBook').style.display='none'; qs('#viewShelf').style.display = v==='shelf'? '': 'none'; qs('#viewGibis').style.display = v==='gibis'? '': 'none'; qs('#viewFriends').style.display = v==='friends'? '': 'none'; if(v==='shelf'){ renderShelf(); } if(v==='gibis'){ renderGibis(); } if(v==='library'){ qs('#sectionGrid').closest('.card').style.display=''; }
-}
-
-// Favorite button state in detail
-function updateFavoriteButton(){ if(!currentBook) return; qs('#btnFavorite').textContent = favorites.includes(currentBook.id)? '♥ Favorito':'♡ Favoritar'; }
-
-// Load persisted state
-(function boot(){ favorites = JSON.parse(localStorage.getItem(LS_FAV) || '[]'); shelf = JSON.parse(localStorage.getItem(LS_SHELF) || '[]'); progress = JSON.parse(localStorage.getItem(LS_PROGRESS) || '{}'); follows = JSON.parse(localStorage.getItem(LS_FOLLOW) || '[]'); notifs = JSON.parse(localStorage.getItem(LS_NOTIFS) || '[]'); updateNotifCount(); renderShelf(); renderGibis(); renderFriends(); })();
-
-// add new book (mock)
-qs('#btnNewBook').addEventListener('click', ()=>{ const t=prompt('Título do livro (mock):','Novo Livro Exemplo'); if(!t) return; const book={id:BOOKS.length+1,title:t,author:'Autor Demo',cover:'https://via.placeholder.com/400x600.png?text='+encodeURIComponent(t),genre:'Geral',pages:200,publisher:'Editora Demo',year:2025,isbn:'000-0000000000'}; BOOKS.unshift(book); qs('#searchInput').dispatchEvent(new Event('input')); pushNotif('Livro adicionado (mock)'); });
-
-// suggestion: simulate friend activity => push notification every 25s (demo)
-setInterval(()=>{ const f = sampleFriends[Math.floor(Math.random()*sampleFriends.length)]; const b = BOOKS[Math.floor(Math.random()*BOOKS.length)]; pushNotif(`${f.name} comentou em ${b.title}`); },25000);
-
-// small helpers
-function updateFavoriteUI(){ renderGrid(BOOKS.slice(0,36), sectionGrid); renderShelf(); }
-
-// show shelf on load into menu default
-showView('library');
-
+// Simular atividade de amigos (demo)
+setInterval(() => {
+  if (window.app) {
+    const sampleFriends = [
+      {id:1, name:'Camila R.', status:'Lendo Clean Code'},
+      {id:2, name:'Lucas M.', status:'Comentou Dom Casmurro'},
+      {id:3, name:'Beatriz S.', status:'Seguindo a saga'}
+    ];
+    
+    const f = sampleFriends[Math.floor(Math.random() * sampleFriends.length)];
+    const b = window.app.BOOKS[Math.floor(Math.random() * window.app.BOOKS.length)];
+    window.app.pushNotif(`${f.name} comentou em ${b.title}`);
+  }
+}, 25000);
 </script>
 </body>
 </html>

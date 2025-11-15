@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Leitura+ — Chat do Livro</title>
-
 <style>
     :root {
         --bg:#0b0b0d;
@@ -21,6 +20,9 @@
         font-family: Inter, sans-serif;
         background: linear-gradient(180deg, var(--bg), #050507);
         color: var(--text);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
 
     header {
@@ -28,7 +30,7 @@
         align-items: center;
         justify-content: space-between;
         padding: 14px 20px;
-        background: linear-gradient(90deg, var(--card), #0a0a0c);
+        background: var(--card);
         border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
@@ -51,23 +53,27 @@
         font-size: 1.2rem;
     }
 
-    /* LAYOUT */
     .container {
         display: grid;
         grid-template-columns: 220px 1fr 220px;
+        flex: 1;
         height: calc(100vh - 70px);
     }
 
-    /* PAINEL ESQUERDO — USUÁRIOS */
-    .users-panel {
+    .users-panel, .chats-panel {
         background: var(--panel);
-        border-right: 1px solid rgba(255,255,255,0.05);
         padding: 20px;
         overflow-y: auto;
+        border-right: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .chats-panel {
+        border-right: none;
+        border-left: 1px solid rgba(255,255,255,0.05);
     }
 
     .panel-title {
-        margin-bottom: 10px;
+        margin-bottom: 16px;
         font-size: 1rem;
         color: var(--accent-2);
         font-weight: 600;
@@ -82,44 +88,21 @@
         padding: 8px;
         margin-bottom: 8px;
         border: 1px solid rgba(255,255,255,0.03);
-        cursor: default;
     }
 
     .avatar {
         width: 36px;
         height: 36px;
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
         border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-weight: 700;
+        overflow: hidden;
     }
 
-    /* PAINEL DIREITO — OUTROS CHATS */
-    .chats-panel {
-        background: var(--panel);
-        border-left: 1px solid rgba(255,255,255,0.05);
-        padding: 20px;
-        overflow-y: auto;
+    .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
-    .chat-item {
-        background: rgba(255,255,255,0.04);
-        border-radius: 10px;
-        padding: 10px;
-        margin-bottom: 12px;
-        cursor: pointer;
-        transition: 0.2s;
-        border: 1px solid rgba(255,255,255,0.03);
-    }
-
-    .chat-item:hover {
-        background: rgba(255,255,255,0.08);
-    }
-
-    /* CHAT CENTRAL */
     .chat-area {
         padding: 20px;
         display: flex;
@@ -136,6 +119,12 @@
         display: flex;
         flex-direction: column;
         gap: 14px;
+    }
+
+    .chat-header {
+        text-align: center;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
     #chatMessages {
@@ -184,166 +173,197 @@
         font-weight: bold;
         color: white;
         cursor: pointer;
-        transition: 0.2s;
     }
 
-    button:hover {
-        opacity: 0.8;
+    .chat-item {
+        background: rgba(255,255,255,0.04);
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        border: 1px solid rgba(255,255,255,0.03);
     }
 
-    .avatar img {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    object-fit: cover;
+    .chat-item:hover {
+        background: rgba(255,255,255,0.08);
     }
-
-    .avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    overflow: hidden;
-    }
-
 </style>
 </head>
 <body>
-
-<header>
-    <div class="logo">
-        <div class="logo-icon">L+</div>
-        <div>
-            <div style="font-size:1.1rem;font-weight:700;">Leitura+</div>
-            <div style="font-size:0.8rem;color:var(--muted)">Chat de Grupo</div>
-        </div>
-    </div>
-
-    <button onclick="window.location.href='main.html'" style="background:#0002;border:1px solid #fff2;">
-        Voltar
-    </button>
-</header>
-
-<div class="container">
-
-    <!-- ESQUERDA — USUÁRIOS -->
-    <div class="users-panel">
-    <div class="panel-title">👥 Participantes</div>
-
-    <div class="user">
-        <div class="avatar">
-            <img src="profileImages\images (1).jpg">
-        </div>
-        Você
-    </div>
-
-    <div class="user">
-        <div class="avatar">
-            <img src="profileImages\images.jpg">
-        </div>
-        João Pedro
-    </div>
-
-    <div class="user">
-        <div class="avatar">
-            <img src="profileImages\images (2).jpg">
-        </div>
-        Ana Martins
-    </div>
-
-    <div class="user">
-        <div class="avatar">
-            <img src="profileImages\images (4).jpg">
-        </div>
-        Lucas Silva
-    </div>
-
-    <div class="user">
-        <div class="avatar">
-            <img src="profileImages\images (5).jpg">
-        </div>
-        Elisa Rocha
-    </div>
-
-    <div class="user">
-        <div class="avatar">
-            <img src="profileImages\images (3).jpg">
-        </div>
-        Gabriel Ferreira
-    </div>
-</div>
-
-    <!-- CENTRO — CHAT ATUAL -->
-    <div class="chat-area">
-        <div class="chat-card">
-
-            <h2 style="margin:0">Conversa sobre <span style="color:var(--accent-2)">Dom Casmurro</span></h2>
-            <div id="chatMessages"></div>
-            <div class="chat-input-area">
-                <input id="msg" placeholder="Escreva uma mensagem...">
-                <button onclick="sendMessage()">Enviar</button>
+    <header>
+        <div class="logo">
+            <div class="logo-icon">L+</div>
+            <div>
+                <div style="font-size:1.1rem;font-weight:700;">Leitura+</div>
+                <div style="font-size:0.8rem;color:var(--muted)" id="chatTitle">Chat de Grupo</div>
             </div>
+        </div>
+        <button onclick="window.history.back()">Voltar</button>
+    </header>
 
+    <div class="container">
+        <div class="users-panel">
+            <div class="panel-title">👥 Participantes</div>
+            <div class="user">
+                <div class="avatar">
+                    <img src="profileImages/images (1).jpg">
+                </div>
+                Você
+            </div>
+            <div class="user">
+                <div class="avatar">
+                    <img src="profileImages/images.jpg">
+                </div>
+                João Pedro
+            </div>
+            <div class="user">
+                <div class="avatar">
+                    <img src="profileImages/images (2).jpg">
+                </div>
+                Ana Martins
+            </div>
+            <div class="user">
+                <div class="avatar">
+                    <img src="profileImages/images (4).jpg">
+                </div>
+                Lucas Silva
+            </div>
+        </div>
+
+        <div class="chat-area">
+            <div class="chat-card">
+                <div class="chat-header">
+                    <h2 id="bookChatTitle">Chat da Comunidade</h2>
+                    <div class="muted" id="bookChatSubtitle">Converse com outros leitores</div>
+                </div>
+                
+                <div id="chatMessages"></div>
+                
+                <div class="chat-input-area">
+                    <input id="msgInput" placeholder="Escreva uma mensagem...">
+                    <button onclick="sendMessage()">Enviar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="chats-panel">
+            <div class="panel-title">📚 Outros chats</div>
+            <div class="chat-item" onclick="changeChat('Dom Casmurro')">Dom Casmurro</div>
+            <div class="chat-item" onclick="changeChat('O Hobbit')">O Hobbit</div>
+            <div class="chat-item" onclick="changeChat('1984')">1984</div>
+            <div class="chat-item" onclick="changeChat('Clean Code')">Clean Code</div>
         </div>
     </div>
 
-    <!-- DIREITA — OUTROS CHATS -->
-    <div class="chats-panel">
-        <div class="panel-title">📚 Outros chats</div>
+    <script>
+        class ChatApp {
+            constructor() {
+                this.currentBook = null;
+                this.currentChat = 'Dom Casmurro';
+                this.userName = 'Eduarda Coimbra';
+                this.init();
+            }
 
-        <div class="chat-item">O Hobbit</div>
-        <div class="chat-item">1984</div>
-        <div class="chat-item">O Pequeno Príncipe</div>
-        <div class="chat-item">Orgulho e Preconceito</div>
-        <div class="chat-item">A Revolução dos Bichos</div>
-        <div class="chat-item">Senhor dos Anéis — A Sociedade do Anel</div>
-        <div class="chat-item">Clean Code</div>
-    </div>
+            init() {
+                this.loadBookFromURL();
+                this.setupEventListeners();
+                this.loadChat();
+            }
 
-</div>
+            loadBookFromURL() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const bookData = urlParams.get('book');
+                
+                if (bookData) {
+                    try {
+                        this.currentBook = JSON.parse(decodeURIComponent(bookData));
+                        this.currentChat = this.currentBook.title;
+                        this.updateChatTitle();
+                    } catch (e) {
+                        console.error('Erro ao carregar livro:', e);
+                    }
+                }
+            }
 
-<script>
+            updateChatTitle() {
+                document.getElementById('chatTitle').textContent = `Chat: ${this.currentChat}`;
+                document.getElementById('bookChatTitle').textContent = `Chat: ${this.currentChat}`;
+                document.getElementById('bookChatSubtitle').textContent = `Discuta sobre "${this.currentChat}" com outros leitores`;
+            }
 
-    const key = "chat_global_clean_code";
+            setupEventListeners() {
+                document.getElementById('msgInput').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.sendMessage();
+                    }
+                });
+            }
 
-    function loadChat() {
-        const area = document.getElementById("chatMessages");
-        const messages = JSON.parse(localStorage.getItem(key) || "[]");
+            getChatKey() {
+                return `chat_${this.currentChat.replace(/\s+/g, '_').toLowerCase()}`;
+            }
 
-        area.innerHTML = "";
+            loadChat() {
+                const area = document.getElementById("chatMessages");
+                const messages = JSON.parse(localStorage.getItem(this.getChatKey()) || "[]");
 
-        messages.forEach(msg => {
-            const div = document.createElement("div");
-            div.className = "msg";
-            if (msg.self) div.classList.add("self");
+                area.innerHTML = "";
 
-            div.innerHTML = `<b>${msg.name}</b><br>${msg.text}`;
-            area.appendChild(div);
+                if (messages.length === 0) {
+                    area.innerHTML = '<div class="muted" style="text-align: center; padding: 20px;">Nenhuma mensagem ainda. Seja o primeiro a comentar!</div>';
+                    return;
+                }
+
+                messages.forEach(msg => {
+                    const div = document.createElement("div");
+                    div.className = "msg";
+                    if (msg.self) div.classList.add("self");
+
+                    div.innerHTML = `<b>${msg.name}</b><br>${msg.text}`;
+                    area.appendChild(div);
+                });
+
+                area.scrollTop = area.scrollHeight;
+            }
+
+            sendMessage() {
+                const text = document.getElementById("msgInput").value.trim();
+                if (!text) return;
+
+                const messages = JSON.parse(localStorage.getItem(this.getChatKey()) || "[]");
+
+                messages.push({
+                    name: this.userName,
+                    text: text,
+                    self: true,
+                    timestamp: new Date().toLocaleTimeString()
+                });
+
+                localStorage.setItem(this.getChatKey(), JSON.stringify(messages));
+                document.getElementById("msgInput").value = "";
+                this.loadChat();
+            }
+
+            changeChat(bookTitle) {
+                this.currentChat = bookTitle;
+                this.updateChatTitle();
+                this.loadChat();
+            }
+        }
+
+        // Funções globais para os event listeners do HTML
+        function sendMessage() {
+            window.chatApp.sendMessage();
+        }
+
+        function changeChat(bookTitle) {
+            window.chatApp.changeChat(bookTitle);
+        }
+
+        // Inicializar o chat
+        document.addEventListener('DOMContentLoaded', () => {
+            window.chatApp = new ChatApp();
         });
-
-        area.scrollTop = area.scrollHeight;
-    }
-
-    function sendMessage() {
-        const name = "Eduarda Coimbra";
-        const text = document.getElementById("msg").value.trim();
-
-        if (!name || !text) return;
-
-        const messages = JSON.parse(localStorage.getItem(key) || "[]");
-
-        messages.push({
-            name,
-            text,
-            self: true
-        });
-
-        localStorage.setItem(key, JSON.stringify(messages));
-        document.getElementById("msg").value = "";
-
-        loadChat();
-    }
-    loadChat();
-</script>
-
+    </script>
 </body>
 </html>

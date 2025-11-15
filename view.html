@@ -3,513 +3,692 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Leitura+ - Demonstração</title>
+    <title>Leitura+ - Detalhes do Livro</title>
     <style>
         :root {
-            --bg: #120617;
-            --panel: #241730;
-            --card: #2b1f3a;
+            --bg: #0b0b0d;
+            --panel: #0f0f14;
+            --card: #111217;
             --accent: #8a5cf6;
             --accent-2: #cfa3ff;
-            --text: #f8f5ff;
-            --muted: #cfc6e9;
-            --glass: rgba(255, 255, 255, 0.03);
+            --text: #e7e9ee;
+            --muted: #9aa0b4;
+        }
+
+        [data-theme="light"] {
+            --bg: #f5f7fb;
+            --panel: #ffffff;
+            --card: #ffffff;
+            --accent: #4f46e5;
+            --accent-2: #8b5cf6;
+            --muted: #64748b;
+            --text: #081124;
         }
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
-            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-            background: linear-gradient(180deg, var(--bg), #0f0814);
+            font-family: Inter, system-ui, -apple-system, sans-serif;
+            background: linear-gradient(180deg, var(--bg), #050507);
             color: var(--text);
-            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
         }
 
+        /* Header */
         header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 18px 24px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-2));
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            padding: 16px 24px;
+            background: var(--card);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
 
-        .brand {
+        [data-theme="light"] header {
+            background: var(--panel);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .logo {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .logo {
-            width: 48px;
-            height: 48px;
+        .logo-icon {
+            width: 42px;
+            height: 42px;
             border-radius: 10px;
             background: linear-gradient(135deg, var(--accent), var(--accent-2));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
-            box-shadow: 0 8px 28px rgba(138, 92, 246, 0.2);
+            color: white;
+            font-weight: 700;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 1.1rem;
+        .btn {
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            color: white;
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
         }
 
-        header .controls {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        header input {
-            padding: 8px 12px;
-            border-radius: 999px;
-            border: 0;
-            background: var(--glass);
+        .ghost {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
             color: var(--text);
-            width: 220px;
+            padding: 9px 15px;
+            border-radius: 10px;
+            cursor: pointer;
         }
 
-        main {
+        [data-theme="light"] .ghost {
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .book-header {
             display: flex;
-            gap: 18px;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .book-cover {
+            width: 280px;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #0a0a0d;
+        }
+
+        [data-theme="light"] .book-cover {
+            background: #f0f0f0;
+        }
+
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-info {
+            flex: 1;
+        }
+
+        .book-title {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+            color: var(--accent-2);
+        }
+
+        .book-author {
+            font-size: 1.2rem;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .book-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .meta-value {
+            font-weight: 600;
+        }
+
+        .book-description {
+            line-height: 1.6;
+            margin-bottom: 24px;
+            color: var(--text);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding-bottom: 8px;
+        }
+
+        .tab {
+            background: transparent;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            background: rgba(138,92,246,0.1);
+            color: var(--text);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Comments */
+        .comments-section {
+            background: var(--card);
+            border-radius: 12px;
             padding: 20px;
         }
 
-        aside {
-            width: 300px;
-        }
-
-        .card {
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.05));
-            border-radius: 12px;
-            padding: 12px;
-        }
-
-        .sidebar-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .saga-item {
-            padding: 8px;
+        .comment {
+            background: rgba(255,255,255,0.03);
             border-radius: 8px;
-            background: transparent;
-            color: var(--muted);
-            cursor: default;
-            border: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .content {
-            flex: 1;
+        .comment-header {
             display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .book-top {
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-        }
-
-        .cover {
-            width: 160px;
-            height: 220px;
-            border-radius: 10px;
-            background: linear-gradient(180deg, var(--accent-2), var(--accent));
-            display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: #2b0233;
+            margin-bottom: 8px;
         }
 
-        .book-info h2 {
-            margin: 0;
-            color: var(--accent-2);
+        .comment-author {
+            font-weight: 600;
+        }
+
+        .comment-date {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .comment-form {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .comment-form input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: var(--panel);
+            color: var(--text);
+        }
+
+        /* Chat Link */
+        .chat-link {
+            text-align: center;
+            padding: 40px;
+            background: var(--card);
+            border-radius: 12px;
+            border: 2px dashed rgba(255,255,255,0.1);
         }
 
         .muted {
             color: var(--muted);
-            font-size: 0.92rem;
-        }
-
-        .stars span {
-            cursor: pointer;
-            font-size: 22px;
-            margin-right: 4px;
-        }
-
-        .actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .btn {
-            background: var(--accent);
-            color: #fff;
-            padding: 8px 12px;
-            border-radius: 10px;
-            border: 0;
-            cursor: pointer;
-            box-shadow: 0 8px 24px rgba(138, 92, 246, 0.12);
-        }
-
-        .btn.ghost {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .tabs {
-            display: flex;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .tab {
-            padding: 8px 10px;
-            border-radius: 10px;
-            background: transparent;
-            border: 0;
-            color: var(--muted);
-            cursor: pointer;
-        }
-
-        .tab.active {
-            background: rgba(255, 255, 255, 0.03);
-            color: var(--text);
-        }
-
-        .panes {
-            margin-top: 10px;
-        }
-
-        textarea, input {
-            width: 100%;
-            padding: 8px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            background: transparent;
-            color: var(--text);
-            margin-top: 8px;
-        }
-
-        .comment {
-            padding: 8px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.01);
-            margin-bottom: 8px;
-        }
-
-        .playlist-item, .reco-item {
-            padding: 8px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.01);
-            margin-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-box {
-            height: 180px;
-            overflow: auto;
-            border-radius: 8px;
-            padding: 8px;
-            background: rgba(0, 0, 0, 0.08);
-            margin-bottom: 8px;
-        }
-
-        footer {
-            padding: 14px;
-            text-align: center;
-            color: var(--muted);
         }
 
         .small {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
 
-        /* responsive */
-        @media (max-width: 900px) {
-            main {
-                flex-direction: column;
-                padding: 12px;
-            }
-            aside {
-                width: 100%;
-            }
-            .cover {
-                width: 120px;
-                height: 170px;
-            }
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .footer-text {
-            padding: 8px 10px;
-            border-radius: 10px;
-            background: transparent;
-            border: 0;
-            cursor: pointer;
-            color: #b5b5b5;
+
+        .share-popup {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            border: 2px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 300px;
+            animation: popupAppear 0.3s ease;
         }
-        .footer-text a {
-            color: #b5b5b5;
-            text-decoration: none;
+
+        @keyframes popupAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translate(-50%, -50%);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translate(-50%, -50%);
+            }
         }
     </style>
 </head>
-<body>
+<body data-theme="dark">
     <header>
-        <div class="brand">
-            <div class="logo">📚</div>
-            <h1>Leitura+ <span class="small muted">demo</span></h1>
+        <div class="logo">
+            <div class="logo-icon">L+</div>
+            <div>
+                <h1>Leitura+</h1>
+                <div class="small muted">Detalhes do Livro</div>
+            </div>
         </div>
-        <div class="controls">
-            <input id="searchBox" placeholder="Pesquisar livro, autor ou tag..." />
-            <button class="btn" id="themeBtn">Tema</button>
+        <div>
+            <button class="ghost" onclick="window.history.back()">← Voltar</button>
+            <button class="ghost" id="themeBtn">Modo Claro</button>
         </div>
     </header>
 
-    <main>
-        <aside>
-            <div class="card">
-                <h3>Explorar</h3>
-                <div class="muted small">Sagas em destaque</div>
-                <div class="sidebar-list" id="sidebarSagas"></div>
-                <hr style="border:none;height:1px;background:rgba(255,255,255,0.02);margin:10px 0">
-                <div class="muted small">Recomendações</div>
-                <div id="sidebarRecos" style="margin-top:8px"></div>
+    <div class="container">
+        <div class="book-header">
+            <div class="book-cover">
+                <img id="bookCover" src="" alt="Capa do livro">
             </div>
-        </aside>
-
-        <section class="content">
-            <div class="card">
-                <div class="book-top">
-                    <div class="cover" id="bookCover">Capa</div>
-                    <div class="book-info">
-                        <h2 id="bookTitle">O Exemplo da Leitura</h2>
-                        <div class="muted" id="bookAuthor">Autor Exemplar</div>
-                        <div style="margin-top:8px" id="avgRating">Sem avaliações</div>
-                        <div class="actions">
-                            <div class="stars" id="ratingStars">Avaliar:
-                                <span data-star="1">☆</span><span data-star="2">☆</span><span data-star="3">☆</span><span data-star="4">☆</span><span data-star="5">☆</span>
-                            </div>
-                            <button class="btn" id="followSaga">Seguir Saga</button>
-                            <button class="btn ghost" id="openPlaylist">Abrir Playlist</button>
-                        </div>
+            <div class="book-info">
+                <h1 class="book-title" id="bookTitle">Carregando...</h1>
+                <div class="book-author" id="bookAuthor"></div>
+                
+                <div class="book-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Gênero</span>
+                        <span class="meta-value" id="bookGenre"></span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Páginas</span>
+                        <span class="meta-value" id="bookPages"></span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Ano</span>
+                        <span class="meta-value" id="bookYear"></span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Editora</span>
+                        <span class="meta-value" id="bookPublisher"></span>
                     </div>
                 </div>
 
-                <p id="bookDesc" style="margin-top:12px" class="muted small">
-                    Este é um texto de exemplo sobre o livro. Dê duplo clique em qualquer palavra complicada para pedir uma explicação (mock).
-                </p>
+                <p class="book-description" id="bookDescription"></p>
 
-                <div class="tabs" id="tabs">
-                    <button class="tab active" data-tab="comments">Comentários</button>
-                    <button class="tab" data-tab="playlist">Playlist</button>
-                    <button class="tab" data-tab="sagas">Saga</button>
-                    <button class="tab" data-tab="glossary">Glossário</button>
-                    <button class="footer-text"><a href="chat.html">Chat</a></button>
+                <div class="action-buttons">
+                    <button class="btn" id="btnFavorite">♡ Favoritar</button>
+                    <button class="ghost" id="btnAddShelf">+ Minha Estante</button>
+                    <button class="ghost" id="btnShare">Compartilhar</button>
                 </div>
+            </div>
+        </div>
 
-                <div class="panes">
-                    <div data-pane="comments" class="pane">
-                        <div id="commentsList"><div class="muted">Nenhum comentário ainda — seja o primeiro!</div></div>
-                        <textarea id="commentText" placeholder="Escreva um comentário..."></textarea>
-                        <button class="btn" id="sendComment">Enviar comentário</button>
+        <div class="tabs">
+            <button class="tab active" data-tab="comments">Comentários</button>
+            <button class="tab" data-tab="details">Detalhes</button>
+            <button class="tab" data-tab="chat">Chat do Livro</button>
+        </div>
+
+        <div class="tab-content active" id="commentsTab">
+            <div class="comments-section">
+                <h3>Comentários</h3>
+                <div id="commentsList">
+                    <div class="muted">Nenhum comentário ainda. Seja o primeiro a comentar!</div>
+                </div>
+                
+                <div class="comment-form">
+                    <input type="text" id="commentAuthor" placeholder="Seu nome">
+                    <input type="text" id="commentText" placeholder="Escreva um comentário...">
+                    <button class="btn" id="btnAddComment">Comentar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="detailsTab">
+            <div class="comments-section">
+                <h3>Informações Detalhadas</h3>
+                <div class="book-meta" style="flex-direction: column; gap: 12px;">
+                    <div class="meta-item">
+                        <span class="meta-label">ISBN</span>
+                        <span class="meta-value" id="bookIsbn"></span>
                     </div>
-
-                    <div data-pane="playlist" class="pane" style="display:none">
-                        <div id="playlistList"><div class="muted">Nenhuma música cadastrada.</div></div>
-                        <input id="songTitle" placeholder="Título da música" />
-                        <input id="songUrl" placeholder="URL (ex: https://)" />
-                        <button class="btn" id="addSong">Adicionar à playlist</button>
-                    </div>
-
-                    <div data-pane="sagas" class="pane" style="display:none">
-                        <div id="sagaList"><div class="muted">Este livro pertence à saga: <b>Saga Exemplar</b> (Ordem: 1/3)</div></div>
-                    </div>
-
-                    <div data-pane="glossary" class="pane" style="display:none">
-                        <div class="muted small">Duplo clique em uma palavra da descrição para ver explicação.</div>
-                        <div id="glossaryResult" class="card" style="margin-top:8px">Nenhuma seleção</div>
+                    <div class="meta-item">
+                        <span class="meta-label">Descrição</span>
+                        <span class="meta-value" id="bookFullDescription"></span>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="card">
-                <h3>Recomendações</h3>
-                <div id="recommendations" style="margin-top:8px"></div>
+        <div class="tab-content" id="chatTab">
+            <div class="chat-link">
+                <h3>Chat da Comunidade</h3>
+                <p class="muted" style="margin: 16px 0;">Participe das discussões sobre este livro com outros leitores</p>
+                <button class="btn" id="btnOpenChat">Abrir Chat</button>
             </div>
-        </section>
-    </main>
-
-    <footer>
-        Tema roxo/lilás • Interface demo inspirada em Skoob + Spotify • Tudo local (HTML puro)
-    </footer>
+        </div>
+    </div>
 
     <script>
-        /* ---------- Dados de demo (local) ---------- */
-        const demoBook = {
-            id: 1,
-            title: "O Exemplo da Leitura",
-            author: "Autor Exemplar",
-            description: "Energia sonora e texturas literárias — experimente associar músicas à leitura para aumentar imersão.",
-            cover: null,
-            saga: { name: "Saga Exemplar", order: 1, total: 3 }
-        };
-
-        const demoRecos = [
-            { id: 2, title: "Outra História", author: "Autora X" },
-            { id: 3, title: "Contos e Canções", author: "Autor Y" }
-        ];
-
-        /* ---------- Utilidades ---------- */
-        function $(id) { return document.getElementById(id); }
-        function save(key, value) { localStorage.setItem(key, JSON.stringify(value)); }
-        function load(key, fallback) { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
-
-        /* ---------- Inicialização ---------- */
-        document.getElementById('bookTitle').innerText = demoBook.title;
-        document.getElementById('bookAuthor').innerText = demoBook.author;
-        document.getElementById('bookDesc').innerText = demoBook.description;
-        document.getElementById('sagaList').innerHTML = `<div class="muted small">Saga: <b>${demoBook.saga.name}</b> — Ordem: ${demoBook.saga.order}/${demoBook.saga.total}</div>`;
-        document.getElementById('sidebarSagas').innerHTML = `<div class="saga-item">${demoBook.saga.name} — ${demoBook.saga.total} livros</div>`;
-        const recEl = $('recommendations'); recEl.innerHTML = demoRecos.map(r => `<div class="reco-item"><div><b>${r.title}</b><div class="muted small">${r.author}</div></div><button class="btn ghost" onclick="openBook(${r.id})">Abrir</button></div>`).join('');
-
-        /* ---------- Tabs ---------- */
-        document.querySelectorAll('.tab').forEach(t => {
-            t.addEventListener('click', () => {
-                document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
-                t.classList.add('active');
-                const tab = t.dataset.tab;
-                document.querySelectorAll('[data-pane]').forEach(p => p.style.display = (p.dataset.pane === tab ? '' : 'none'));
-            });
-        });
-
-        /* ---------- Comments (localStorage) ---------- */
-        const COMMENTS_KEY = 'demo_comments_book_' + demoBook.id;
-        function renderComments() {
-            const arr = load(COMMENTS_KEY, []);
-            const el = $('commentsList');
-            if (!arr.length) { el.innerHTML = '<div class="muted">Nenhum comentário ainda — seja o primeiro!</div>'; return; }
-            el.innerHTML = arr.map(c => `<div class="comment"><b>${escapeHtml(c.user)}</b> <div class="muted small">${c.date}</div><div style="margin-top:6px">${escapeHtml(c.text)}</div></div>`).join('');
-        }
-        $('sendComment').addEventListener('click', () => {
-            const text = $('commentText').value.trim();
-            if (!text) return alert('Escreva um comentário.');
-            const user = 'Usuário local';
-            const arr = load(COMMENTS_KEY, []);
-            arr.unshift({ user, text, date: new Date().toLocaleString() });
-            save(COMMENTS_KEY, arr);
-            $('commentText').value = '';
-            renderComments();
-        });
-        renderComments();
-
-        /* ---------- Playlist ---------- */
-        const PLAY_KEY = 'demo_playlist_book_' + demoBook.id;
-        function renderPlaylist() {
-            const arr = load(PLAY_KEY, []);
-            const el = $('playlistList');
-            if (!arr.length) { el.innerHTML = '<div class="muted">Nenhuma música cadastrada.</div>'; return; }
-            el.innerHTML = arr.map((s, i) => `<div class="playlist-item"><div>${escapeHtml(s.title)} <div class="muted small">${escapeHtml(s.url)}</div></div><button class="btn ghost" onclick="removeSong(${i})">Remover</button></div>`).join('');
-        }
-        $('addSong').addEventListener('click', () => {
-            const title = $('songTitle').value.trim(); const url = $('songUrl').value.trim();
-            if (!title || !url) return alert('Preencha título e URL.');
-            const arr = load(PLAY_KEY, []);
-            arr.unshift({ title, url });
-            save(PLAY_KEY, arr);
-            $('songTitle').value = ''; $('songUrl').value = '';
-            renderPlaylist();
-        });
-        function removeSong(i) { const arr = load(PLAY_KEY, []); arr.splice(i, 1); save(PLAY_KEY, arr); renderPlaylist(); }
-        renderPlaylist();
-
-        /* ---------- Chat (local) ---------- */
-        const CHAT_KEY = 'demo_chat_book_' + demoBook.id;
-        function renderChat() {
-            const arr = load(CHAT_KEY, []);
-            const box = $('chatBox');
-            if (!arr.length) { box.innerHTML = '<div class="muted">Chat vazio — comece a conversar!</div>'; return; }
-            box.innerHTML = arr.map(m => `<div class="small"><b>${escapeHtml(m.user)}</b> <span class="muted">(${m.date})</span><div>${escapeHtml(m.text)}</div></div>`).join('');
-            box.scrollTop = box.scrollHeight;
-        }
-        $('sendChat').addEventListener('click', () => {
-            const text = $('chatText').value.trim(); if (!text) return;
-            const user = $('chatUser').value.trim() || 'Anônimo';
-            const arr = load(CHAT_KEY, []);
-            arr.push({ user, text, date: new Date().toLocaleTimeString() });
-            save(CHAT_KEY, arr);
-            $('chatText').value = ''; $('chatUser').value = '';
-            renderChat();
-        });
-        renderChat();
-
-        /* ---------- Ratings (local) ---------- */
-        const RATING_KEY = 'demo_rating_book_' + demoBook.id;
-        function renderRating() {
-            const r = load(RATING_KEY, null);
-            const stars = document.querySelectorAll('#ratingStars span');
-            stars.forEach(s => s.textContent = '☆');
-            if (r) { for (let i = 0; i < r; i++) stars[i].textContent = '★'; $('avgRating').innerText = `Sua avaliação: ${r} ★`; }
-            else $('avgRating').innerText = 'Sem avaliações pessoais';
-        }
-        document.querySelectorAll('#ratingStars span').forEach(s => {
-            s.addEventListener('click', () => {
-                const v = parseInt(s.dataset.star, 10);
-                save(RATING_KEY, v);
-                renderRating();
-            });
-        });
-        renderRating();
-
-        /* ---------- Glossary (double click) ---------- */
-        document.getElementById('bookDesc').addEventListener('dblclick', async () => {
-            const sel = window.getSelection().toString().trim();
-            if (!sel) return;
-            // mock explanation
-            const simple = `Explicação simples para "${sel}": conceito resumido e em linguagem acessível.`;
-            const compare = `Comparação para "${sel}": imagine que ${sel} é como um exemplo cotidiano...`;
-            $('glossaryResult').innerHTML = `<b>${escapeHtml(sel)}</b><div style="margin-top:8px">${escapeHtml(simple)}<br><i class="muted small">${escapeHtml(compare)}</i></div>`;
-        });
-
-        /* ---------- Search (client-side) ---------- */
-        const allBooks = [demoBook, ...demoRecos];
-        $('searchBox').addEventListener('input', (e) => {
-            const q = e.target.value.toLowerCase();
-            if (!q) { // show default recos
-                document.getElementById('sidebarRecos').innerHTML = '';
-                return;
+        class BookViewer {
+            constructor() {
+                this.currentBook = null;
+                this.init();
             }
-            const matches = allBooks.filter(b => (b.title + ' ' + (b.author || '')).toLowerCase().includes(q));
-            document.getElementById('sidebarRecos').innerHTML = matches.map(m => `<div class="reco-item"><div><b>${m.title}</b><div class="muted small">${m.author || ''}</div></div><button class="btn ghost" onclick="openBook(${m.id})">Abrir</button></div>`).join('');
-        });
 
-        /* ---------- Helpers ---------- */
-        function escapeHtml(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
-        function openBook(id) { alert('Abrir livro id=' + id + ' (demo)'); }
+            init() {
+                this.loadBookFromURL();
+                this.setupEventListeners();
+                this.loadComments();
+            }
 
-        /* ---------- Small extras ---------- */
-        document.getElementById('followSaga').addEventListener('click', () => alert('Você começou a seguir a saga: ' + demoBook.saga.name));
-        document.getElementById('openPlaylist').addEventListener('click', () => {
-            // switch to playlist tab
-            document.querySelector('.tab[data-tab="playlist"]').click();
+            loadBookFromURL() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const bookData = urlParams.get('book');
+                
+                if (bookData) {
+                    try {
+                        this.currentBook = JSON.parse(decodeURIComponent(bookData));
+                        this.renderBook();
+                    } catch (e) {
+                        console.error('Erro ao carregar livro:', e);
+                        this.showError();
+                    }
+                } else {
+                    this.showError();
+                }
+            }
+
+            shareBook() {
+                // Criar URL fictícia para compartilhamento
+                const shareUrl = `${window.location.origin}${window.location.pathname}?book=${encodeURIComponent(JSON.stringify(this.currentBook))}`;
+                // Copiar para área de transferência
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    this.showSharePopup();
+                }).catch(() => {
+                    // Fallback para browsers mais antigos
+                    const textArea = document.createElement('textarea');
+                    textArea.value = shareUrl;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    this.showSharePopup();
+                });
+            }
+
+            showSharePopup() {
+                // Criar overlay
+                const overlay = document.createElement('div');
+                overlay.className = 'popup-overlay';
+                
+                // Criar popup
+                const popup = document.createElement('div');
+                popup.className = 'share-popup';
+                popup.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: var(--card);
+                    border: 2px solid var(--accent);
+                    border-radius: 12px;
+                    padding: 24px;
+                    z-index: 1000;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                    text-align: center;
+                    min-width: 250px;
+                `;
+                
+                popup.innerHTML = `
+                    <div style="font-size: 3rem; margin-bottom: 16px;">📤</div>
+                    <h3 style="margin: 0 0 12px 0; color: var(--accent-2);">Link Copiado!</h3>
+                    <p style="margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.4;">
+                        O link de compartilhamento do livro<br>
+                        <strong>"${this.currentBook.title}"</strong><br>
+                        foi copiado para a área de transferência
+                    </p>
+                `;
+                
+                overlay.appendChild(popup);
+                document.body.appendChild(overlay);
+                
+                // Fechar ao clicar no overlay
+                overlay.addEventListener('click', (e) => {
+                    if (e.target === overlay) {
+                        this.closePopup(overlay);
+                    }
+                });
+                
+                // Remover automaticamente após 3 segundos
+                setTimeout(() => {
+                    this.closePopup(overlay);
+                }, 3000);
+            }
+
+            closePopup(overlay) {
+                overlay.style.opacity = '0';
+                overlay.style.transition = 'opacity 0.3s ease';
+                setTimeout(() => {
+                    if (document.body.contains(overlay)) {
+                        document.body.removeChild(overlay);
+                    }
+                }, 300);
+            }
+
+            renderBook() {
+                if (!this.currentBook) return;
+
+                document.getElementById('bookTitle').textContent = this.currentBook.title;
+                document.getElementById('bookAuthor').textContent = this.currentBook.author;
+                document.getElementById('bookGenre').textContent = this.currentBook.genre;
+                document.getElementById('bookPages').textContent = this.currentBook.pages;
+                document.getElementById('bookYear').textContent = this.currentBook.year;
+                document.getElementById('bookPublisher').textContent = this.currentBook.publisher;
+                document.getElementById('bookDescription').textContent = this.currentBook.description;
+                document.getElementById('bookFullDescription').textContent = this.currentBook.description;
+                document.getElementById('bookIsbn').textContent = this.currentBook.isbn;
+                
+                const coverImg = document.getElementById('bookCover');
+                coverImg.src = this.currentBook.cover;
+                coverImg.alt = `Capa de ${this.currentBook.title}`;
+                
+                document.title = `${this.currentBook.title} - Leitura+`;
+            }
+
+            setupEventListeners() {
+                // Tabs
+                document.querySelectorAll('.tab').forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                        
+                        tab.classList.add('active');
+                        document.getElementById(tab.dataset.tab + 'Tab').classList.add('active');
+                    });
+                });
+
+                // Comentários
+                document.getElementById('btnAddComment').addEventListener('click', () => {
+                    this.addComment();
+                });
+
+                // Chat
+                document.getElementById('btnOpenChat').addEventListener('click', () => {
+                    this.openChat();
+                });
+
+                // Tema
+                document.getElementById('themeBtn').addEventListener('click', () => {
+                    this.toggleTheme();
+                });
+
+                // Favoritos
+                document.getElementById('btnFavorite').addEventListener('click', () => {
+                    this.toggleFavorite();
+                });
+
+                // Enter para comentar
+                document.getElementById('commentText').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.addComment();
+                    }
+                });
+
+                document.getElementById('btnShare').addEventListener('click', () => {
+                    this.shareBook();
+                });
+            }
+
+            addComment() {
+                const author = document.getElementById('commentAuthor').value.trim() || 'Anônimo';
+                const text = document.getElementById('commentText').value.trim();
+                
+                if (!text) {
+                    alert('Por favor, escreva um comentário.');
+                    return;
+                }
+
+                const comment = {
+                    author,
+                    text,
+                    date: new Date().toLocaleString(),
+                    bookId: this.currentBook.id
+                };
+
+                this.saveComment(comment);
+                this.loadComments();
+                
+                document.getElementById('commentText').value = '';
+                if (author === 'Anônimo') {
+                    document.getElementById('commentAuthor').value = '';
+                }
+            }
+
+            saveComment(comment) {
+                const comments = this.getComments();
+                comments.unshift(comment);
+                localStorage.setItem(`book_comments_${this.currentBook.id}`, JSON.stringify(comments));
+            }
+
+            getComments() {
+                return JSON.parse(localStorage.getItem(`book_comments_${this.currentBook.id}`) || '[]');
+            }
+
+            loadComments() {
+                const comments = this.getComments();
+                const container = document.getElementById('commentsList');
+                
+                if (comments.length === 0) {
+                    container.innerHTML = '<div class="muted">Nenhum comentário ainda. Seja o primeiro a comentar!</div>';
+                    return;
+                }
+
+                container.innerHTML = comments.map(comment => `
+                    <div class="comment">
+                        <div class="comment-header">
+                            <span class="comment-author">${this.escapeHtml(comment.author)}</span>
+                            <span class="comment-date">${comment.date}</span>
+                        </div>
+                        <div class="comment-text">${this.escapeHtml(comment.text)}</div>
+                    </div>
+                `).join('');
+            }
+
+            openChat() {
+                if (this.currentBook) {
+                    const bookData = encodeURIComponent(JSON.stringify(this.currentBook));
+                    window.location.href = `chat.html?book=${bookData}`;
+                }
+            }
+
+            toggleFavorite() {
+                const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+                const btn = document.getElementById('btnFavorite');
+                
+                if (favorites.includes(this.currentBook.id)) {
+                    const index = favorites.indexOf(this.currentBook.id);
+                    favorites.splice(index, 1);
+                    btn.textContent = '♡ Favoritar';
+                    this.showToast('Removido dos favoritos');
+                } else {
+                    favorites.push(this.currentBook.id);
+                    btn.textContent = '♥ Favoritado';
+                    this.showToast('Adicionado aos favoritos');
+                }
+                
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+            }
+
+            toggleTheme() {
+                const body = document.body;
+                const themeBtn = document.getElementById('themeBtn');
+                
+                if (body.getAttribute('data-theme') === 'dark') {
+                    body.setAttribute('data-theme', 'light');
+                    themeBtn.textContent = 'Modo Escuro';
+                } else {
+                    body.setAttribute('data-theme', 'dark');
+                    themeBtn.textContent = 'Modo Claro';
+                }
+            }
+
+            showToast(message) {
+                // Implementação simples de toast
+                alert(message); // Pode ser substituído por um toast mais elaborado
+            }
+
+            showError() {
+                document.getElementById('bookTitle').textContent = 'Livro não encontrado';
+                document.getElementById('bookDescription').textContent = 'O livro solicitado não pôde ser carregado.';
+            }
+
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+        }
+
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            new BookViewer();
         });
-        renderComments();
-        renderPlaylist();
-        renderChat();
-        renderRating();
     </script>
 </body>
 </html>
